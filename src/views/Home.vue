@@ -54,8 +54,8 @@ export default {
         console.error(error);
       }
       const options = {
-        rootMargin: "0px 0px",
-        threshold: 0,
+        rootMargin: "0px",
+        threshold: 1,
       };
       this.sectionObserver = new IntersectionObserver(
         this.sectionObserverHandler,
@@ -81,7 +81,8 @@ export default {
 
 <style scoped>
 .home {
-
+  padding-bottom: 30px;
+  background-color: #000;
 }
 
 .preview {
