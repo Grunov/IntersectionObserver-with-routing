@@ -3,32 +3,23 @@
     <div class="preview">
       <h1>IntersectionObserver with routing</h1>
     </div>
-    <section id="a">
-      <h1>A</h1>
-    </section>
-    <section id="b">
-      <h1>B</h1>
-    </section>
-    <section id="c">
-      <h1>C</h1>
-    </section>
-    <section id="d">
-      <h1>D</h1>
-    </section>
-    <section id="e">
-      <h1>E</h1>
-    </section>
-    <section id="f">
-      <h1>F</h1>
-    </section>
-    <section id="g">
-      <h1>G</h1>
-    </section>
-    <section id="h">
-      <h1>H</h1>
-    </section>
-    <section id="i">
-      <h1>I</h1>
+    <div class="section-buttons">
+      <button 
+        v-for="section in sections"
+        :key="section"
+        @click="navigationToSection(section)"
+      >
+        {{ section }}
+      </button>
+    </div>
+    <section 
+       v-for="section in sections"
+      :key="section"
+      :id="section"
+    >
+      <h1>
+        {{ section }}
+      </h1>
     </section>
   </div>
 </template>
@@ -41,6 +32,7 @@ export default {
   data() {
     return {
       sectionObserver: null,
+      sections: ['a', 'b', 'c', 'd', 'f', 'g', 'i']
     };
   },
   mounted() {
@@ -75,6 +67,10 @@ export default {
         }
       }
     },
+    navigationToSection(sectionId) {
+      document.getElementById(sectionId).scrollIntoView();
+      this.$router.push({ name: this.$route.name, hash: `#${sectionId}` });
+    }
   },
 };
 </script>
@@ -82,7 +78,7 @@ export default {
 <style scoped>
 .home {
   padding-bottom: 30px;
-  background-color: #000;
+  background-color: rgb(22, 75, 75);
 }
 
 .preview {
@@ -90,7 +86,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(163, 238, 238)  ;
+  color: #fff;
 }
 
 section {
